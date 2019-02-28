@@ -8,7 +8,7 @@ export const Container = styled.div`
   font-family: 'Roboto', sans-serif;
   height: 97vh;
 
-  @media only screen and (max-width: 376px) {
+  @media only screen and (max-width: 767px) {
     overflow-x: hidden;
   }
 `;
@@ -30,7 +30,7 @@ export const Header = styled.div`
 
   position: relative;
 
-  @media only screen and (max-width: 376px) {
+  @media only screen and (max-width: 767px) {
     position: fixed;
     top: 0;
     width: 100vw;
@@ -60,7 +60,7 @@ export const Body = styled.div`
   border-right: 0;
   border-bottom: 0;
 
-  @media only screen and (max-width: 376px) {
+  @media only screen and (max-width: 767px) {
     width: 100vw;
     margin-top: 70px;
     display: flex;

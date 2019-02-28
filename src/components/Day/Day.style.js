@@ -24,7 +24,7 @@ export const Container = styled.div`
     color: white;
   }
 
-  @media only screen and (max-width: 376px) {
+  @media only screen and (max-width: 767px) {
     min-height: 100px;
   }
 `;
