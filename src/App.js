@@ -56,7 +56,7 @@ class App extends Component {
     );
 
     // Start calendar on monday
-    if (!isSameMonth(startOfCalendar, today)) {
+    if (!isSameMonth(startOfCalendar, today) && window.innerWidth > 767) {
       for (
         let i = format(startOfCalendar, 'D');
         i <= format(endOfMonth(startOfCalendar), 'D');
@@ -95,7 +95,7 @@ class App extends Component {
 
     // This fills up the end of the calendar.
 
-    if (!isSameMonth(endOfCalendar, today)) {
+    if (!isSameMonth(endOfCalendar, today) && window.innerWidth > 767) {
       const end = format(endOfCalendar, 'D');
       for (let i = 0; i < end; i++) {
         const dayInYear = endCalendarDiff - end + i + 1;
