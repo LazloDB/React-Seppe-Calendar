@@ -12,7 +12,6 @@ class Month extends React.Component {
 
   render() {
     const { days, today, month, year } = this.props;
-    console.info(days);
 
     return (
       <Container>
