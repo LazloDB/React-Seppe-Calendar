@@ -58,54 +58,54 @@ class App extends Component {
     // Start calendar on monday
     if (!isSameMonth(startOfCalendar, today) && window.innerWidth > 767) {
       for (
-        let i = format(startOfCalendar, 'D');
-        i <= format(endOfMonth(startOfCalendar), 'D');
-        i++
+        let i = format(endOfMonth(startOfCalendar), 'D') - format(startOfCalendar, 'D') + 1;
+        i > 0;
+        i--
       ) {
-        const dayInYear =
-          diff - (format(endOfMonth(startOfCalendar), 'D') - i) - 1;
-        const routineDay = this.getDayInRoutine(dayInYear, routine);
+        const dayInMonth = subDays(endOfMonth(startOfCalendar), i - 1);
+        const routineDay = this.getDayInRoutine(diff - i, routine);
+
         days.push({
-          number: i,
-          day: format(
-            subDays(
-              firstDayOfTheMonth,
-              format(endOfMonth(startOfCalendar), 'D') - i + 1,
-            ),
-            'dddd',
-          ),
+          number: format(dayInMonth, 'D'),
+          day: format(dayInMonth, 'dddd'),
           inMonth: false,
           routine: routine[routineDay],
-          dayInYear: dayInYear,
+          dayInYear: format(dayInMonth, 'DDD'),
+          date: format(dayInMonth, 'DD-MM-YYYY')
         });
       }
     }
 
-    // Fill calendar witht his month
+    // Fill calendar with this month
     for (let i = 0; i < format(endOfMonth(today), 'D'); i++) {
       const routineDay = this.getDayInRoutine(diff + i, routine);
+      const dayInMonth = addDays(firstDayOfTheMonth, i);
+
       days.push({
-        number: i + 1,
-        day: format(addDays(firstDayOfTheMonth, i), 'dddd'),
+        number: format(dayInMonth, 'D'),
+        day: format(dayInMonth, 'dddd'),
         inMonth: true,
         routine: routine[routineDay],
-        dayInYear: format(addDays(firstDayOfTheMonth, i), 'DDD'),
+        dayInYear: format(dayInMonth, 'DDD'),
+        date: format(dayInMonth, 'DD-MM-YYYY'),
       });
     }
 
     // This fills up the end of the calendar.
-
     if (!isSameMonth(endOfCalendar, today) && window.innerWidth > 767) {
       const end = format(endOfCalendar, 'D');
-      for (let i = 0; i < end; i++) {
-        const dayInYear = endCalendarDiff - end + i + 1;
-        const routineDay = this.getDayInRoutine(dayInYear, routine);
+
+      for (let i = end - 1; i > -1; i--) {
+        const dayInMonth = subDays(endOfCalendar, i);
+        const routineDay =  this.getDayInRoutine(endCalendarDiff - i, routine);
+
         days.push({
-          number: i + 1,
-          day: format(addDays(endOfCalendar, dayInYear + 1), 'dddd'),
+          number: format(dayInMonth, 'D'),
+          day: format(dayInMonth, 'dddd'),
           inMonth: false,
           routine: routine[routineDay],
-          dayInYear: dayInYear,
+          dayInYear: format(dayInMonth, 'DDD'),
+          date: format(dayInMonth, 'DD-MM-YYYY')
         });
       }
     }
