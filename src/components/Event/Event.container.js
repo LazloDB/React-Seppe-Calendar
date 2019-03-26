@@ -3,7 +3,7 @@ import { withFormik } from 'formik';
 import Event from './Event';
 
 const EventContainer = withFormik({
-  mapPropsToValues: () => ({ name: '' }),
+  mapPropsToValues: () => ({ name: '', date: '' }),
 
   // Custom sync validation
   validate: values => {

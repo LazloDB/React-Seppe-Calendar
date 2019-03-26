@@ -23,9 +23,10 @@ const Event = props => {
           />
           <DatePicker
             label="Basic example"
-            value={'02-05-1995'}
+            value={'05-02-1995'}
             onChange={handleChange}
             animateYearScrolling
+            name="date"
           />
           {errors.name && touched.name && <div id="feedback">{errors.name}</div>}
           <button type="submit">Submit</button>
