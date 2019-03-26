@@ -21,7 +21,7 @@ import {
 class Calendar extends Component {
   state = {
     today: new Date(),
-    todayFormatted: format(new Date(), 'DDD'),
+    todayFormatted: format(new Date(), 'ddd'),
     monthFormatted: '',
     yearFormatted: '',
     days: [],
@@ -58,7 +58,7 @@ class Calendar extends Component {
     // Start calendar on monday
     if (!isSameMonth(startOfCalendar, today) && window.innerWidth > 767) {
       for (
-        let i = format(endOfMonth(startOfCalendar), 'D') - format(startOfCalendar, 'D') + 1;
+        let i = format(endOfMonth(startOfCalendar), 'd') - format(startOfCalendar, 'd') + 1;
         i > 0;
         i--
       ) {
@@ -66,46 +66,46 @@ class Calendar extends Component {
         const routineDay = this.getDayInRoutine(diff - i, routine);
 
         days.push({
-          number: format(dayInMonth, 'D'),
-          day: format(dayInMonth, 'dddd'),
+          number: format(dayInMonth, 'd'),
+          day: format(dayInMonth, 'EEEE'),
           inMonth: false,
           routine: routine[routineDay],
-          dayInYear: format(dayInMonth, 'DDD'),
-          date: format(dayInMonth, 'DD-MM-YYYY')
+          dayInYear: format(dayInMonth, 'ddd'),
+          date: format(dayInMonth, 'dd-MM-yyyy')
         });
       }
     }
 
     // Fill calendar with this month
-    for (let i = 0; i < format(endOfMonth(today), 'D'); i++) {
+    for (let i = 0; i < format(endOfMonth(today), 'd'); i++) {
       const routineDay = this.getDayInRoutine(diff + i, routine);
       const dayInMonth = addDays(firstDayOfTheMonth, i);
 
       days.push({
-        number: format(dayInMonth, 'D'),
-        day: format(dayInMonth, 'dddd'),
+        number: format(dayInMonth, 'd'),
+        day: format(dayInMonth, 'EEEE'),
         inMonth: true,
         routine: routine[routineDay],
-        dayInYear: format(dayInMonth, 'DDD'),
-        date: format(dayInMonth, 'DD-MM-YYYY'),
+        dayInYear: format(dayInMonth, 'ddd'),
+        date: format(dayInMonth, 'dd-MM-yyyy'),
       });
     }
 
     // This fills up the end of the calendar.
     if (!isSameMonth(endOfCalendar, today) && window.innerWidth > 767) {
-      const end = format(endOfCalendar, 'D');
+      const end = format(endOfCalendar, 'd');
 
       for (let i = end - 1; i > -1; i--) {
         const dayInMonth = subDays(endOfCalendar, i);
         const routineDay =  this.getDayInRoutine(endCalendarDiff - i, routine);
 
         days.push({
-          number: format(dayInMonth, 'D'),
-          day: format(dayInMonth, 'dddd'),
+          number: format(dayInMonth, 'd'),
+          day: format(dayInMonth, 'EEEE'),
           inMonth: false,
           routine: routine[routineDay],
-          dayInYear: format(dayInMonth, 'DDD'),
-          date: format(dayInMonth, 'DD-MM-YYYY')
+          dayInYear: format(dayInMonth, 'ddd'),
+          date: format(dayInMonth, 'dd-MM-yyyy')
         });
       }
     }
@@ -115,7 +115,7 @@ class Calendar extends Component {
       startOfCalendar: startOfCalendar,
       endOfCalendar: endOfCalendar,
       monthFormatted: format(today, 'MMMM'),
-      yearFormatted: format(today, 'YYYY'),
+      yearFormatted: format(today, 'yyyy'),
       days: days,
     });
   };
