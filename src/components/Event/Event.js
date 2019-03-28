@@ -16,10 +16,6 @@ class Event extends Component {
     console.info('goback');
   };
 
-  changer = e => {
-    console.info(e);
-  };
-
   render() {
     const { values, touched, errors, handleChange, handleSubmit } = this.props;
 
@@ -55,7 +51,7 @@ class Event extends Component {
           />
 
           <DatePicker
-            label="Basic example"
+            label="Date"
             value={this.state.date}
             onChange={e => {
               // Hacky way
