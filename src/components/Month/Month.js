@@ -6,8 +6,10 @@ class Month extends React.Component {
   monthRef = React.createRef();
 
   handleChange = type => {
+    const { changeMonth } = this.props;
+
     this.monthRef.current.scrollTop = 0;
-    this.props.changeMonth(type);
+    changeMonth(type);
   };
 
   render() {
@@ -30,7 +32,7 @@ class Month extends React.Component {
         <Body ref={this.monthRef}>
           {days.map(day => (
             <Day
-              key={`${day.number} ${day.dayInYear}`}
+              key={`${day.number+day.dayInYear+day.inMonth} `}
               day={day.day}
               number={day.number}
               routine={day.routine}
