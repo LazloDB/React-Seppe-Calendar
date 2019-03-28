@@ -6,30 +6,18 @@ import DateFnsUtils from '@date-io/date-fns';
 import InputSelect from '../InputSelect/InputSelect';
 import { Form, Header, BackArrow } from './Event.style';
 
-const changer = (value, name, onchange) => {
-  console.info(value);
-  const event = {
-    event: {
-      target: {
-        value: value,
-      },
-      type: 'change',
-    },
-    value: value,
-    type: 'change',
-    name: name,
-  };
-
-  onchange(name, event);
-};
-
 class Event extends Component {
   state = {
     date: new Date(),
+    name: '',
   };
 
   goBack = () => {
     console.info('goback');
+  };
+
+  changer = e => {
+    console.info(e);
   };
 
   render() {
@@ -50,7 +38,13 @@ class Event extends Component {
           <TextField
             label="Event name"
             value={values.name}
-            onChange={handleChange}
+            onChange={e => {
+              // Hacky way
+              this.setState({
+                name: e.target.value,
+              });
+              values.name = e.target.value;
+            }}
             variant="outlined"
           />
 
