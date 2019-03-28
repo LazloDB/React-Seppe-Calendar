@@ -3,20 +3,26 @@ import { withFormik } from 'formik';
 import Event from './Event';
 
 const EventContainer = withFormik({
-  mapPropsToValues: () => ({ name: '', date: '' }),
+  mapPropsToValues: () => ({ name: '', date: new Date(), type: '' }),
 
   // Custom sync validation
-  validate: values => {
-    const errors = {};
+  // validate: values => {
+  //   const errors = {};
 
-    if (!values.name) {
-      errors.name = 'Required';
-    }
+  //   if (!values.name) {
+  //     errors.name = 'Required';
+  //   }
 
-    return errors;
-  },
+  //   return errors;
+  // },
+
+  isInitialValid: false,
+
+  validateOnBlur: false,
+  validateOnChange: true,
 
   handleSubmit: (values, { setSubmitting }) => {
+    console.info(values);
     setTimeout(() => {
       alert(JSON.stringify(values, null, 2));
       setSubmitting(false);
@@ -26,4 +32,4 @@ const EventContainer = withFormik({
   displayName: 'EventForm',
 })(Event);
 
-export default EventContainer
+export default EventContainer;
