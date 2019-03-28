@@ -1,8 +1,6 @@
-import firebase from 'firebase';
-import { fbConfig } from '../../../config';
+import { fbConfig } from '../../config';
+import * as firebase from 'firebase';
 
-const firebaseConfig = fbConfig;
+firebase.initializeApp(fbConfig);
 
-firebase.initializeApp(firebaseConfig);
-
-export default firebaseConfig;
+export default firebase;

@@ -1,4 +1,5 @@
 import { withFormik } from 'formik';
+import firebase from '../Firebase';
 
 import Event from './Event';
 
@@ -21,12 +22,15 @@ const EventContainer = withFormik({
   validateOnBlur: false,
   validateOnChange: true,
 
-  handleSubmit: (values, { setSubmitting }) => {
-    console.info(values);
-    setTimeout(() => {
-      alert(JSON.stringify(values, null, 2));
-      setSubmitting(false);
-    }, 1000);
+  handleSubmit: (values) => {
+    const db = firebase.firestore();
+    db.collection('events').add({
+      name: values.name,
+      type: values.type,
+      date: values.date,
+      recurring: false,
+    });  
+
   },
 
   displayName: 'EventForm',
