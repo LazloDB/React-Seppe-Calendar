@@ -9,8 +9,11 @@ import { Form, Header, BackArrow } from './Event.style';
 const changer = (value, name, onchange) => {
   console.info(value);
   const event = {
-    target: {
-      value: value,
+    event: {
+      target: {
+        value: value,
+      },
+      type: 'change',
     },
     value: value,
     type: 'change',
@@ -21,19 +24,16 @@ const changer = (value, name, onchange) => {
 };
 
 class Event extends Component {
+  state = {
+    date: new Date(),
+  };
+
   goBack = () => {
     console.info('goback');
   };
 
   render() {
-    const {
-      values,
-      touched,
-      errors,
-      handleChange,
-      handleBlur,
-      handleSubmit,
-    } = this.props;
+    const { values, touched, errors, handleChange, handleSubmit } = this.props;
 
     const items = ['Petri', 'Sick', 'Vacation', 'Other'];
 
@@ -62,8 +62,14 @@ class Event extends Component {
 
           <DatePicker
             label="Basic example"
-            value={values.date}
-            onChange={e => changer(e, 'date', handleChange)}
+            value={this.state.date}
+            onChange={e => {
+              // Hacky way
+              this.setState({
+                date: e,
+              });
+              values.date = e;
+            }}
             animateYearScrolling
             name="date"
             variant="outlined"
