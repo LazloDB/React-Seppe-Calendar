@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { Container, Header, BackArrow, NextArrow, Body } from './Month.style';
 import Day from '../Day';
 
@@ -12,6 +13,11 @@ class Month extends React.Component {
     changeMonth(type);
   };
 
+  goToEvent = () => {
+    const { history } = this.props;
+    history.push('/event');
+  };
+
   render() {
     const { days, today, month, year } = this.props;
 
@@ -22,7 +28,7 @@ class Month extends React.Component {
             onClick={() => this.handleChange('previous')}
             className="fas fa-arrow-left"
           />
-          {`${month} ${year}`}
+          <span onDoubleClick={this.goToEvent}>{`${month} ${year}`}</span>
           <NextArrow
             onClick={() => this.handleChange('next')}
             className="fas fa-arrow-right"
@@ -32,7 +38,7 @@ class Month extends React.Component {
         <Body ref={this.monthRef}>
           {days.map(day => (
             <Day
-              key={`${day.number+day.dayInYear+day.inMonth} `}
+              key={`${day.number + day.dayInYear + day.inMonth} `}
               day={day.day}
               number={day.number}
               routine={day.routine}
@@ -45,4 +51,4 @@ class Month extends React.Component {
   }
 }
 
-export default Month;
+export default withRouter(Month);

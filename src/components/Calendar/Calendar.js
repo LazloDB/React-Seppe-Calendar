@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { routine } from '../../assets/schedules/seppe'; 
+import { routine } from '../../assets/schedules/seppe';
 import '../../App.css';
 
 import Month from '../Month';
@@ -58,7 +58,10 @@ class Calendar extends Component {
     // Start calendar on monday
     if (!isSameMonth(startOfCalendar, today) && window.innerWidth > 767) {
       for (
-        let i = format(endOfMonth(startOfCalendar), 'd') - format(startOfCalendar, 'd') + 1;
+        let i =
+          format(endOfMonth(startOfCalendar), 'd') -
+          format(startOfCalendar, 'd') +
+          1;
         i > 0;
         i--
       ) {
@@ -71,7 +74,7 @@ class Calendar extends Component {
           inMonth: false,
           routine: routine[routineDay],
           dayInYear: format(dayInMonth, 'ddd'),
-          date: format(dayInMonth, 'dd-MM-yyyy')
+          date: format(dayInMonth, 'dd-MM-yyyy'),
         });
       }
     }
@@ -97,7 +100,7 @@ class Calendar extends Component {
 
       for (let i = end - 1; i > -1; i--) {
         const dayInMonth = subDays(endOfCalendar, i);
-        const routineDay =  this.getDayInRoutine(endCalendarDiff - i, routine);
+        const routineDay = this.getDayInRoutine(endCalendarDiff - i, routine);
 
         days.push({
           number: format(dayInMonth, 'd'),
@@ -105,7 +108,7 @@ class Calendar extends Component {
           inMonth: false,
           routine: routine[routineDay],
           dayInYear: format(dayInMonth, 'ddd'),
-          date: format(dayInMonth, 'dd-MM-yyyy')
+          date: format(dayInMonth, 'dd-MM-yyyy'),
         });
       }
     }
