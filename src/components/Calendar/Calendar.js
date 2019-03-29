@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import firebase from '../Firebase';
 import { routine } from '../../assets/schedules/seppe';
 import '../../App.css';
 
@@ -25,10 +26,12 @@ class Calendar extends Component {
     monthFormatted: '',
     yearFormatted: '',
     days: [],
+    events: [],
   };
 
   componentDidMount() {
     this.buildMonth();
+    this.fetchEvents();
   }
 
   buildMonth = () => {
@@ -129,6 +132,22 @@ class Calendar extends Component {
     return day;
   };
 
+  fetchEvents = () => {
+    const database = firebase.firestore();
+    const collection = database.collection('events');
+
+    collection.get().then(events => {
+      let data = [];
+      events.forEach(doc => {
+        data.push(doc.data());
+      });
+
+      this.setState({
+        events: data,
+      });
+    });
+  };
+
   changeMonth = type => {
     this.setState(
       {
@@ -145,12 +164,19 @@ class Calendar extends Component {
   };
 
   render() {
-    const { days, todayFormatted, monthFormatted, yearFormatted } = this.state;
+    const {
+      days,
+      todayFormatted,
+      monthFormatted,
+      yearFormatted,
+      events,
+    } = this.state;
 
     return (
       <div className="App">
         <Month
           days={days}
+          events={events}
           today={todayFormatted}
           month={monthFormatted}
           year={yearFormatted}

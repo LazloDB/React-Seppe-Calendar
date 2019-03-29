@@ -19,7 +19,7 @@ class Month extends React.Component {
   };
 
   render() {
-    const { days, today, month, year } = this.props;
+    const { days, today, month, year, events } = this.props;
 
     return (
       <Container>
@@ -28,7 +28,7 @@ class Month extends React.Component {
             onClick={() => this.handleChange('previous')}
             className="fas fa-arrow-left"
           />
-          <span onDoubleClick={this.goToEvent}>{`${month} ${year}`}</span>
+          <span onClick={this.goToEvent}>{`${month} ${year}`}</span>
           <NextArrow
             onClick={() => this.handleChange('next')}
             className="fas fa-arrow-right"
@@ -43,6 +43,7 @@ class Month extends React.Component {
               number={day.number}
               routine={day.routine}
               isToday={day.dayInYear === today}
+              events={events.filter(event => event.displayDate === day.date)}
             />
           ))}
         </Body>
