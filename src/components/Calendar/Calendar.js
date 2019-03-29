@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import firebase from '../Firebase';
+import firestore from '../Firebase';
 import { routine } from '../../assets/schedules/seppe';
 import '../../App.css';
 
@@ -133,7 +133,7 @@ class Calendar extends Component {
   };
 
   fetchEvents = () => {
-    const database = firebase.firestore();
+    const database = firestore();
     const collection = database.collection('events');
 
     collection.get().then(events => {

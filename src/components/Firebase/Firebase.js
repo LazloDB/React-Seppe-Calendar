@@ -1,6 +1,6 @@
 import { fbConfig } from '../../config';
-import * as firebase from 'firebase';
+import { initializeApp, firestore } from 'firebase';
 
-firebase.initializeApp(fbConfig);
+initializeApp(fbConfig);
 
-export default firebase;
+export default firestore;

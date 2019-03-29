@@ -1,6 +1,6 @@
 import { withFormik } from 'formik';
 import { format } from 'date-fns';
-import firebase from '../Firebase';
+import firestore from '../Firebase';
 
 import Event from './Event';
 
@@ -24,7 +24,7 @@ const EventContainer = withFormik({
   validateOnChange: true,
 
   handleSubmit: values => {
-    const db = firebase.firestore();
+    const db = firestore();
     db.collection('events').add({
       name: values.name,
       type: values.type,
