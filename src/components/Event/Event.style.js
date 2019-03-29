@@ -34,4 +34,7 @@ export const BackArrow = styled.i`
   cursor: pointer;
   position: absolute;
   left: 20px;
+  color: #fff;
+  top: 50%;
+  transform: translateY(-50%);
 `;

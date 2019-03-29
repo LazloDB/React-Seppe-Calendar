@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { MuiPickersUtilsProvider, DatePicker } from 'material-ui-pickers';
@@ -24,10 +25,10 @@ class Event extends Component {
     return (
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <Header>
-          <BackArrow
-            onClick={() => this.goBack()}
-            className="fas fa-arrow-left"
-          />
+          <Link to="/">
+            <BackArrow className="fas fa-arrow-left" />
+          </Link>
+          Event
         </Header>
 
         <Form onSubmit={handleSubmit}>
