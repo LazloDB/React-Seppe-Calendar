@@ -16,7 +16,7 @@ class Event extends Component {
   render() {
     const { values, touched, errors, handleChange, handleSubmit } = this.props;
 
-    const items = ['Petri', 'Sick', 'Vacation', 'Birthday', 'Other'];
+    const items = ['Petri', 'Shift', 'Sick', 'Vacation', 'Birthday','Other'];
 
     return (
       <MuiPickersUtilsProvider utils={DateFnsUtils}>

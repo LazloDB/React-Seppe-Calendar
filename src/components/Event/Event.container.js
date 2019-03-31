@@ -30,7 +30,8 @@ const EventContainer = withFormik({
       type: values.type,
       displayDate: format(values.date, 'dd-MM-yyyy'),
       recurring: false,
-    });
+      uploadDate: new Date(),
+    }).then(() => console.info('yes'), err => console.info(err));
   },
 
   displayName: 'EventForm',

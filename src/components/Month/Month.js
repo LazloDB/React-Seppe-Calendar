@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { Container, Header, BackArrow, NextArrow, Body } from './Month.style';
 import Day from '../Day';
 
@@ -36,16 +36,23 @@ class Month extends React.Component {
         </Header>
 
         <Body ref={this.monthRef}>
-          {days.map(day => (
-            <Day
-              key={`${day.number + day.dayInYear + day.inMonth} `}
-              day={day.day}
-              number={day.number}
-              routine={day.routine}
-              isToday={day.dayInYear === today}
-              events={events.filter(event => event.displayDate === day.date)}
-            />
-          ))}
+          {days.map(day => {
+            const dayEvents = events.filter(event => event.displayDate === day.date);
+            return (
+              <Link 
+                key={day.number + day.dayInYear + day.inMonth}
+                style={{ textDecoration: 'none', color: '#000' }}
+                to={{ pathname: '/event-details', state: { events: dayEvents } }}>
+                <Day
+                  day={day.day}
+                  number={day.number}
+                  routine={day.routine}
+                  isToday={day.dayInYear === today}
+                  events={dayEvents}
+                />
+              </Link>
+            )
+          })}
         </Body>
       </Container>
     );

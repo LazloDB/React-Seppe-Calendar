@@ -31,7 +31,14 @@ export const Container = styled.div`
 
 export const IndicatorWrapper = styled.div`
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 10px;
+  right: 10px;
   display: flex;
+  flex-direction: column;
+
+  @media only screen and (max-width: 767px) {
+    flex-direction: row;
+    right: 20px;
+    top: 20px;
+  }
 `;
