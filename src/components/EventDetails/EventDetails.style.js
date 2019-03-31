@@ -23,3 +23,9 @@ export const BackArrow = styled.i`
   top: 50%;
   transform: translateY(-50%);
 `;
+
+export const DetailContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
