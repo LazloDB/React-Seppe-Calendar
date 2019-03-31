@@ -8,17 +8,16 @@ const renderIndicators = events => {
   ));
 };
 
-const getSortedShiftEvents = events => {
-  const shiftEvents = events.filter(event => event.type === 'Shift');
-  return shiftEvents.sort((a, b) => b.uploadDate.seconds - a.uploadDate.seconds);
+const getShiftEvents = events => {
+  return events.filter(event => event.type === 'Shift');
 };
 
 const Day = ({ day, routine, isToday, number, events }) => {
-  const shiftEvents = getSortedShiftEvents(events);
+  const shiftEvents = getShiftEvents(events);
   routine = shiftEvents.length > 0 ? shiftEvents[shiftEvents.length - 1].name : routine;
 
   return (
-    <Container isFree={routine === 'X'} isToday={isToday} type={events}>
+    <Container isFree={routine === 'X'} isToday={isToday}>
       <IndicatorWrapper>{renderIndicators(events)}</IndicatorWrapper>
 
       <div>{number}</div>

@@ -6,7 +6,7 @@ import { Header, BackArrow, DetailContainer } from './EventDetails.style';
 class EventDetails extends Component {
   render() {
     const { location: { state : { events }} } = this.props;
-    console.info(events);
+
     return (
         <div>
           <Header>

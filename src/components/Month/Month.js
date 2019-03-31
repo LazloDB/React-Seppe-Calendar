@@ -18,6 +18,11 @@ class Month extends React.Component {
     history.push('/event');
   };
 
+  getDayEvents = (events, day) => {
+    const filteredEvents = events.filter(event => event.displayDate === day.date)
+    return filteredEvents.sort((a, b) => b.uploadDate.seconds - a.uploadDate.seconds);
+  }
+
   render() {
     const { days, today, month, year, events } = this.props;
 
@@ -37,7 +42,7 @@ class Month extends React.Component {
 
         <Body ref={this.monthRef}>
           {days.map(day => {
-            const dayEvents = events.filter(event => event.displayDate === day.date);
+            const dayEvents = this.getDayEvents(events, day);
             return (
               <Link 
                 key={day.number + day.dayInYear + day.inMonth}

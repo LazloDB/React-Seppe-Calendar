@@ -1,8 +1,14 @@
 import { withFormik } from 'formik';
 import { format } from 'date-fns';
+import { withRouter } from 'react-router-dom';
 import firestore from '../Firebase';
 
 import Event from './Event';
+
+const redirectToHome = (props) => {
+  const { history } = props;
+  history.push('/');
+}
 
 const EventContainer = withFormik({
   mapPropsToValues: () => ({ name: '', date: new Date(), type: '' }),
@@ -23,7 +29,9 @@ const EventContainer = withFormik({
   validateOnBlur: false,
   validateOnChange: true,
 
-  handleSubmit: values => {
+  handleSubmit: (values, formikBag) => {
+    const { props } = formikBag;
+
     const db = firestore();
     db.collection('events').add({
       name: values.name,
@@ -31,10 +39,10 @@ const EventContainer = withFormik({
       displayDate: format(values.date, 'dd-MM-yyyy'),
       recurring: false,
       uploadDate: new Date(),
-    }).then(() => console.info('yes'), err => console.info(err));
+    }).then(() => redirectToHome(props), err => console.info(err));
   },
 
   displayName: 'EventForm',
 })(Event);
 
-export default EventContainer;
+export default withRouter(EventContainer);
