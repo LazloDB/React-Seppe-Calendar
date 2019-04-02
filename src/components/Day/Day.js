@@ -14,7 +14,8 @@ const getShiftEvents = events => {
 
 const Day = ({ day, routine, isToday, number, events }) => {
   const shiftEvents = getShiftEvents(events);
-  routine = shiftEvents.length > 0 ? shiftEvents[shiftEvents.length - 1].name : routine;
+  routine =
+    shiftEvents.length > 0 ? shiftEvents[shiftEvents.length - 1].name : routine;
 
   return (
     <Container isFree={routine === 'X'} isToday={isToday}>

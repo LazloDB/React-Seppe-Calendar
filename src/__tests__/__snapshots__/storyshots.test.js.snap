@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Day no events 1`] = `
+<div
+  className="sc-bdVaJa eIRNsU"
+>
+  <div
+    className="sc-bwzfXH jWdCUO"
+  />
+  <div>
+    21
+  </div>
+  <div>
+    Sunday
+  </div>
+  <div>
+    X
+  </div>
+</div>
+`;
