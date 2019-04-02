@@ -1,11 +1,22 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { Button } from '@storybook/react/demo';
+import Day from '../components/Day/';
 
-storiesOf('Button', module)
-  .add('with text', () => (
-    <Button>Hello Button</Button>
-  ))
-  .add('with emoji', () => (
-    <Button><span role="img" aria-label="so cool">😀 😎 👍 💯</span></Button>
-  )); 
+const day = {
+  date: '21-04-2019',
+  day: 'Sunday',
+  dayInYear: '021',
+  inMonth: true,
+  number: '21',
+  routine: 'X',
+};
+
+storiesOf('Day', module).add('no events', () => (
+  <Day
+    day={day.day}
+    number={day.number}
+    routine={day.routine}
+    isToday={false}
+    events={[]}
+  />
+));

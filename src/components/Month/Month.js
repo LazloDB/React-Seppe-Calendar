@@ -19,9 +19,13 @@ class Month extends React.Component {
   };
 
   getDayEvents = (events, day) => {
-    const filteredEvents = events.filter(event => event.displayDate === day.date)
-    return filteredEvents.sort((a, b) => b.uploadDate.seconds - a.uploadDate.seconds);
-  }
+    const filteredEvents = events.filter(
+      event => event.displayDate === day.date,
+    );
+    return filteredEvents.sort(
+      (a, b) => b.uploadDate.seconds - a.uploadDate.seconds,
+    );
+  };
 
   render() {
     const { days, today, month, year, events } = this.props;
@@ -42,12 +46,17 @@ class Month extends React.Component {
 
         <Body ref={this.monthRef}>
           {days.map(day => {
+            console.info(day);
             const dayEvents = this.getDayEvents(events, day);
             return (
-              <Link 
+              <Link
                 key={day.number + day.dayInYear + day.inMonth}
                 style={{ textDecoration: 'none', color: '#000' }}
-                to={{ pathname: '/event-details', state: { events: dayEvents } }}>
+                to={{
+                  pathname: '/event-details',
+                  state: { events: dayEvents },
+                }}
+              >
                 <Day
                   day={day.day}
                   number={day.number}
@@ -56,7 +65,7 @@ class Month extends React.Component {
                   events={dayEvents}
                 />
               </Link>
-            )
+            );
           })}
         </Body>
       </Container>
